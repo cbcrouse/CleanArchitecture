@@ -348,3 +348,12 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# iOS files
+.DS_Store
+
+# Custom developer settings
+**/appsettings.local.json
+
+# Azure Functions local settings file
+local.settings.json
