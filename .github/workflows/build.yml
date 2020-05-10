@@ -17,9 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+    - name: Restore ca-sln
+      run: dotnet restore './templates/ca-sln/_APP_NAME_.sln'
+    - name: Build ca-sln
+      run: dotnet build './templates/ca-sln/_APP_NAME_.sln' --configuration Release --no-restore
+    - name: Test ca-sln
+      run: dotnet test './templates/ca-sln/_APP_NAME_.sln' --no-restore --verbosity normal
