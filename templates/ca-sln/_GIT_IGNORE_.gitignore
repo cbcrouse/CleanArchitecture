@@ -357,10 +357,3 @@ MigrationBackup/
 
 # Azure Functions local settings file
 local.settings.json
-
-# Custom Template Ignores
-bin/
-
-obj/
-
-tools/Test_*
