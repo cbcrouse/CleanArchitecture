@@ -22,4 +22,4 @@ jobs:
     - name: Build ca-sln
       run: dotnet build './templates/ca-sln/_APP_NAME_.sln' --configuration Release --no-restore
     - name: Test ca-sln
-      run: dotnet test './templates/ca-sln/_APP_NAME_.sln' --no-restore --verbosity normal
+      run: dotnet test './templates/ca-sln/_APP_NAME_.sln' --no-restore --verbosity minimal
