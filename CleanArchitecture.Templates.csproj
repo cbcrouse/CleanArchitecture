@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <PackageId>CleanArchitecture.Templates</PackageId>
     <Title>Clean Architecture Templates</Title>
     <Authors>Casey Crouse</Authors>
     <Description>Templates to use when creating an application using DDD, Mediator pattern, and clean architecture pattern.</Description>
+    <RepositoryUrl>https://github.com/cbcrouse/CleanArchitecture</RepositoryUrl>
     <PackageTags>dotnet-new;templates;clean architecture</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
 
