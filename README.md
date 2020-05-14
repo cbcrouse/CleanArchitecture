@@ -56,11 +56,11 @@ Below is a diagram and several descriptions to help you understand the layout of
     <img width="450" height="450" src="./docs/media/dependency_diagram.png" />
 </p>
 
-* <span style="color:#9FD383;">[Green]</span> Presentation Layer - Depends only on Infrastructure
-* <span style="color:#FFAC08;">[Orange]</span> Infrastructure Layer - Depends on Application and Persistence
-* <span style="color:#D988AB;">[Red]</span> Persistence Layer - Depends on Application
-* <span style="color:#90B3E6;">[Blue]</span> Business Layer - Application must ONLY depend on Domain and Events. Common is the only exception for shareable code.
-* <span style="color:#FFDE79;">[Yellow]</span> Common Layer - No direct dependencies
+* ![Green](https://via.placeholder.com/30x11/9FD383/9FD383) Presentation Layer - Depends only on Infrastructure
+* ![Orange](https://via.placeholder.com/30x11/FFAC08/FFAC08) Infrastructure Layer - Depends on Application and Persistence
+* ![Red](https://via.placeholder.com/30x11/D988AB/D988AB) Persistence Layer - Depends on Application
+* ![Blue](https://via.placeholder.com/30x11/90B3E6/90B3E6) Business Layer - Application must ONLY depend on Domain and Events. Common is the only exception for shareable code.
+* ![Yellow](https://via.placeholder.com/30x11/FFDE79/FFDE79) Common Layer - No direct dependencies
 
 ### Assembly Responsibilities
 
