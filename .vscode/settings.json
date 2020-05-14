@@ -1,6 +1,14 @@
 {
     "cSpell.words": [
         "ASPNETCORE",
-        "Serilog"
+        "Mediat",
+        "Serilog",
+        "appname",
+        "appsettings",
+        "bugfix",
+        "datastore",
+        "hotfix",
+        "microservices",
+        "rebases"
     ]
 }
