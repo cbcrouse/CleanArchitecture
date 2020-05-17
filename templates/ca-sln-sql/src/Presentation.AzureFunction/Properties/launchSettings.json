@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Presentation.AzureFunction": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_Environment": "Development"
+      }
+    }
+  }
+}

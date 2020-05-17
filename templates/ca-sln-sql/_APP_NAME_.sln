@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A5BC695A-821A-474F-9BF4-28B643A408B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{D32DA566-23F9-493D-AEB2-2B2B935718FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "src\Common\Common.csproj", "{D32DA566-23F9-493D-AEB2-2B2B935718FA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{B89776F4-740E-41A3-9E13-07045B101490}"
 EndProject
@@ -27,19 +27,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events", "src\Events\Events.csproj", "{7E5F5A96-4C43-48DE-A8CD-EAFF2D32E891}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{5DB33F41-9FAE-427D-9EFF-CB5113DEF90D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{5DB33F41-9FAE-427D-9EFF-CB5113DEF90D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Persistence\Persistence.csproj", "{17D6FFC4-E4E2-453D-927B-14F59965FB18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Sql", "src\Persistence.Sql\Persistence.Sql.csproj", "{17D6FFC4-E4E2-453D-927B-14F59965FB18}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.Console", "src\Presentation.Console\Presentation.Console.csproj", "{7C6B9607-B2D6-4379-832C-C727084C3119}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Tests", "tst\Common.Tests\Common.Tests.csproj", "{358D90D7-55DB-4D8C-944C-1C03C7FF9A67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Tests", "tst\Business.Tests\Business.Tests.csproj", "{78762F9C-FBE5-4402-B150-B0843EB886DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Tests", "tst\Business.Tests\Business.Tests.csproj", "{78762F9C-FBE5-4402-B150-B0843EB886DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "tst\Infrastructure.Tests\Infrastructure.Tests.csproj", "{E38B5D4F-333F-4327-81F9-8A718FE738C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Tests", "tst\Persistence.Tests\Persistence.Tests.csproj", "{52B7AD41-4812-464E-A5B2-850A45E634A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Sql.Tests", "tst\Persistence.Tests\Persistence.Sql.Tests.csproj", "{52B7AD41-4812-464E-A5B2-850A45E634A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.API.Tests", "tst\Presentation.API.Tests\Presentation.API.Tests.csproj", "{2C63769B-BADC-4E36-82E8-E3F6B3B9D7B3}"
 EndProject
@@ -47,7 +47,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.AzureFunction"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Console.Tests", "tst\Presentation.Console.Tests\Presentation.Console.Tests.csproj", "{C0387E00-11FB-4AE1-A4F2-43B6BF78AF64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.API", "src\Presentation.API\Presentation.API.csproj", "{F68DF522-891A-4BAC-828A-215BF8F5D718}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.API", "src\Presentation.API\Presentation.API.csproj", "{FF94FA55-7614-4017-8392-C6A03B578324}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapping.Tests", "tst\Mapping.Tests\Mapping.Tests.csproj", "{13F295C1-8069-4565-A073-7146DA5E2517}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,10 +113,14 @@ Global
 		{C0387E00-11FB-4AE1-A4F2-43B6BF78AF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0387E00-11FB-4AE1-A4F2-43B6BF78AF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0387E00-11FB-4AE1-A4F2-43B6BF78AF64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F68DF522-891A-4BAC-828A-215BF8F5D718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F68DF522-891A-4BAC-828A-215BF8F5D718}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F68DF522-891A-4BAC-828A-215BF8F5D718}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F68DF522-891A-4BAC-828A-215BF8F5D718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF94FA55-7614-4017-8392-C6A03B578324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF94FA55-7614-4017-8392-C6A03B578324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF94FA55-7614-4017-8392-C6A03B578324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF94FA55-7614-4017-8392-C6A03B578324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13F295C1-8069-4565-A073-7146DA5E2517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13F295C1-8069-4565-A073-7146DA5E2517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13F295C1-8069-4565-A073-7146DA5E2517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13F295C1-8069-4565-A073-7146DA5E2517}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,7 +144,8 @@ Global
 		{2C63769B-BADC-4E36-82E8-E3F6B3B9D7B3} = {770AA7B9-8254-4020-B9AB-DCA2F2A248A3}
 		{024595D8-2EDA-4212-BE84-D47D49BE6973} = {A5BC695A-821A-474F-9BF4-28B643A408B6}
 		{C0387E00-11FB-4AE1-A4F2-43B6BF78AF64} = {770AA7B9-8254-4020-B9AB-DCA2F2A248A3}
-		{F68DF522-891A-4BAC-828A-215BF8F5D718} = {A5BC695A-821A-474F-9BF4-28B643A408B6}
+		{FF94FA55-7614-4017-8392-C6A03B578324} = {A5BC695A-821A-474F-9BF4-28B643A408B6}
+		{13F295C1-8069-4565-A073-7146DA5E2517} = {770AA7B9-8254-4020-B9AB-DCA2F2A248A3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {366D1276-B771-479D-890C-1C96A50C4BC7}

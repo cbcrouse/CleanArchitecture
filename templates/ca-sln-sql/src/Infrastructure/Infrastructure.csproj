@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <nullable>enable</nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="8.6.1" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="8.6.1" />
+        <PackageReference Include="MediatR" Version="8.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.1" />
+        <PackageReference Include="MongoDB.Bson" Version="2.10.4" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Application\Application.csproj" />
+        <ProjectReference Include="..\Common\Common.csproj" />
+        <ProjectReference Include="..\Persistence.Sql\Persistence.Sql.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="appsettings.core.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="appsettings.core.Development.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <DependentUpon>appsettings.core.json</DependentUpon>
+        </None>
+        <None Update="appsettings.core.dev.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <DependentUpon>appsettings.core.json</DependentUpon>
+        </None>
+        <None Update="appsettings.core.qa.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <DependentUpon>appsettings.core.json</DependentUpon>
+        </None>
+        <None Update="appsettings.core.stg.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <DependentUpon>appsettings.core.json</DependentUpon>
+        </None>
+        <None Update="appsettings.core.prod.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <DependentUpon>appsettings.core.json</DependentUpon>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="ValueResolvers\" />
+        <Folder Include="Services\" />
+        <Folder Include="MediatR\" />
+    </ItemGroup>
+    <ProjectExtensions>
+        <VisualStudio>
+            <UserProperties appsettings_1core_1dev_1json__JsonSchema="http://json.schemastore.org/appsettings" appsettings_1core_1stg_1json__JsonSchema="http://json.schemastore.org/appsettings" appsettings_1core_1qa_1json__JsonSchema="http://json.schemastore.org/appsettings" appsettings_1core_1development_1json__JsonSchema="http://json.schemastore.org/appsettings" appsettings_1core_1prod_1json__JsonSchema="http://json.schemastore.org/appsettings" appsettings_1core_1json__JsonSchema="http://json.schemastore.org/appsettings" />
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>

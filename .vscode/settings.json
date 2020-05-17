@@ -9,6 +9,7 @@
         "datastore",
         "hotfix",
         "microservices",
-        "rebases"
+        "rebases",
+        "sqlcmd"
     ]
 }
