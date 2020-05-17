@@ -23,8 +23,8 @@ dotnet new -i CleanArchitecture.Templates
 ### Templates
 
 * **ca-sln** - A simple application with three separate presentations
-* **ca-sln-sql** (Coming soon!) - Includes an entity framework core implementation using an in-memory datastore
-* **ca-sln-mongo** (Coming soon!) - Includes a mongo db implementation
+* **ca-sln-sql** - Includes an entity framework core implementation using Sql Server with Docker
+* **ca-sln-mongo** (Coming soon!) - Includes a MongoDB implementation
 
 ### Create a template
 

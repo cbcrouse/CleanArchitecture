@@ -1,0 +1,7 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "http://0.0.0.0:10000",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}

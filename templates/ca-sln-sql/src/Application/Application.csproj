@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="8.6.1" />
+        <PackageReference Include="MediatR" Version="8.0.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Common\Common.csproj" />
+        <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="TodoItem\" />
+        <Folder Include="TodoItem\Commands\" />
+        <Folder Include="TodoItem\Queries\" />
+        <Folder Include="TodoItem\Handlers\" />
+        <Folder Include="TodoItem\Validators\" />
+        <Folder Include="Interfaces\" />
+        <Folder Include="Mapping\" />
+        <Folder Include="Interfaces\ValueResolvers\" />
+    </ItemGroup>
+</Project>
