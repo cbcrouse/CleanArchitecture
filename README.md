@@ -6,7 +6,58 @@
 
 _Keep your application code free of dependencies like persistence and presentation._
 
-Welcome to my rendition of Jason Taylor's [Clean Architecture Template](https://github.com/jasontaylordev/CleanArchitecture)! I was first inspired by Jason's [first video](https://www.youtube.com/watch?v=_lwCVE_XgqI&t=4s) where Clean Architecture was presented in a .NET Core application which has been updated in his [most recent video](https://www.youtube.com/watch?v=5OtUm1BLmG0). I used this solution structure, patterns, and principles to build several production-ready microservices. What came of that, was the ability to **orchestrate an application's startup process** using any presentation, ensuring that an application's dependencies and behavior remains consistent.
+Welcome to my rendition of Jason Taylor's [Clean Architecture Template](https://github.com/jasontaylordev/CleanArchitecture)! I was first inspired by Jason's [first video](https://www.youtube.com/watch?v=_lwCVE_XgqI&t=4s) where Clean Architecture was presented in a .NET Core application which has been updated in his [most recent video](https://www.youtube.com/watch?v=5OtUm1BLmG0). I used this solution structure, patterns, and principles to build an entire suite of production microservices. What came of that, was the ability to **orchestrate an application's startup process** using any presentation, ensuring that an application's dependencies and behavior remains consistent.
+
+---
+
+## Startup Orchestration
+
+#### What is the problem?
+
+Applications that depend on the .NET Core framework have similar startup flows:
+
+1. .NET Core hands your application some stuff like an IServiceCollection with some pre-populated dependencies such as ILoggerFactory.
+1. You register some startup dependencies as well.
+1. Your application builds that container and is ready for use.
+
+When implementing _Clean Architecture_ in your application, it becomes very easy to have multiple ways to start your application. When your application is capable of starting up with any type of presentation layer (e.g. API, Console, or an Azure Function), this requires you to register the same dependencies in each startup sequence. **This means you cannot guarantee that your application will behave the same for each presentation, because your presentation controls your dependencies**.
+
+What if your application could register its own dependencies, ensuring it always behaved the same, while the presentation layers only registered dependencies that they needed? For example, an API is no longer responsible for ensuring the 'EmailService' is registered, but is responsible for Swagger being registered. This is where the startup orchestration comes in!
+
+#### How does it work?
+
+The concept itself is simple enough, **the presentation layer needs to hand the responsibility of adding services to the IoC container to the application's infrastructure**.
+
+This is exactly what has been done. Within the Infrastructure assembly, you will find a startup folder with several classes:
+
+* **CoreStartupOrchestrator** - This contains the core functionality and is ultimately responsible for executing IoC container registrations.
+* **AppStartupOrchestrator** - Inherits from core, but simply adds the dependency registrations that are needed by the application.
+* **PresentationStartupOrchestrator** - This is where the pieces are connected together. See how it's been implemented in the [API Startup.cs](./templates/ca-sln-sql/src/Presentation.API/Startup.cs).
+
+> The Azure Function and Console presentation layers have different ways of starting up, but the orchestration is accomplished in similar ways.
+
+#### The Secret Sauce
+
+You might have noticed that all of the service registrations are added to collections of [Expressions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expressions). This allows the infrastructure to accept any number of IoC registrations without issue, orchestrate the order of execution, as well as dynamically log what exactly is being executed. Here's a sample of the log output from the API starting up:
+
+```log
+[2020:06:03 11:05:03.723 PM] [Verbose] [] '"value(Infrastructure.Startup.AppStartupOrchestrator).RegisterAutoMapper()"' was started...
+[2020:06:03 11:05:03.724 PM] [Verbose] [] '"value(Infrastructure.Startup.AppStartupOrchestrator).RegisterAutoMapper()"' completed successfully!
+[2020:06:03 11:05:03.724 PM] [Verbose] [] '"value(Infrastructure.Startup.AppStartupOrchestrator).ServiceCollection.AddSingleton()"' was started...
+[2020:06:03 11:05:03.724 PM] [Verbose] [] '"value(Infrastructure.Startup.AppStartupOrchestrator).ServiceCollection.AddSingleton()"' completed successfully!
+[2020:06:03 11:05:04.776 PM] [Verbose] [] '"value(Presentation.API.Startup).ServiceCollection.AddAuthorization()"' was started...
+[2020:06:03 11:05:04.883 PM] [Verbose] [] '"value(Presentation.API.Startup).ServiceCollection.AddAuthorization()"' completed successfully!
+[2020:06:03 11:05:04.883 PM] [Verbose] [] '"value(Presentation.API.Startup).ServiceCollection.AddHealthChecks()"' was started...
+[2020:06:03 11:05:04.884 PM] [Verbose] [] '"value(Presentation.API.Startup).ServiceCollection.AddHealthChecks()"' completed successfully!
+[2020:06:03 11:05:04.884 PM] [Verbose] [] '"value(Presentation.API.Startup).AddMvcCore()"' was started...
+[2020:06:03 11:05:05.342 PM] [Verbose] [] '"value(Presentation.API.Startup).AddMvcCore()"' completed successfully!
+[2020:06:03 11:05:05.343 PM] [Verbose] [] '"value(Presentation.API.Startup).AddSwagger()"' was started...
+[2020:06:03 11:05:05.363 PM] [Verbose] [] '"value(Presentation.API.Startup).AddSwagger()"' completed successfully!
+[2020:06:03 11:05:08.064 PM] [Information] [Microsoft.Hosting.Lifetime] Now listening on: "http://localhost:5000"
+[2020:06:03 11:05:08.064 PM] [Information] [Microsoft.Hosting.Lifetime] Now listening on: "https://localhost:5001"
+[2020:06:03 11:05:08.065 PM] [Information] [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+[2020:06:03 11:05:08.065 PM] [Information] [Microsoft.Hosting.Lifetime] Hosting environment: "Development"
+```
 
 ---
 
@@ -48,127 +99,7 @@ If you so choose, [Domain-Driven Design](https://docs.microsoft.com/en-us/dotnet
 
 ## ![Magnifying Glass](./docs/media/telescope.png) Solution Overview
 
-Below is a diagram and several descriptions to help you understand the layout of the solution and why assemblies have certain dependencies and why other dependent relationships must not exist.
-
-### Dependency Diagram
-
-<p align="center">
-    <img width="450" height="450" src="./docs/media/dependency_diagram.png" />
-</p>
-
-* ![Green](https://via.placeholder.com/30x11/9FD383/9FD383) Presentation Layer - Depends only on Infrastructure
-* ![Orange](https://via.placeholder.com/30x11/FFAC08/FFAC08) Infrastructure Layer - Depends on Application and Persistence
-* ![Red](https://via.placeholder.com/30x11/D988AB/D988AB) Persistence Layer - Depends on Application
-* ![Blue](https://via.placeholder.com/30x11/90B3E6/90B3E6) Business Layer - Application must ONLY depend on Domain and Events. Common is the only exception for shareable code.
-* ![Yellow](https://via.placeholder.com/30x11/FFDE79/FFDE79) Common Layer - No direct dependencies
-
-### Assembly Responsibilities
-
-* **API** - Provides presentation-specific dependency registrations through `PresentationStartupOrchestrator<TOrchestrator>`.
-* **Azure Function** - Provides presentation-specific dependency registrations through `FunctionStartupOrchestrator<TOrchestrator>`. Azure Functions have a different startup because it requires inheriting `FunctionStartup`.
-* **Console** - Provides presentation-specific dependency registrations through `PresentationStartupOrchestrator<TOrchestrator>`.
-* **Infrastructure** - Handles dependency registrations for the application and persistence as well as 3rd party integration implementations such as HTTP Clients.
-* **Persistence** - Provides implementation details for persistence related interfaces in the application.
-* **Application** - Provides the dependency-free core business logic.
-* **Domain** - Provides the domain entities, enumerations, exceptions, constants, etc.
-* **Events** - Provides event-specific models and produces a NuGet package that can be consumed by other services that want to subscribe to these events.
-* **Common** - Provides shared code such as string or system extensions. This assembly can be referenced by all other assemblies.
-
-### Application Folder Layout
-
-```csharp
-configuration
-// Contains configuration IOptions classes specific to application
-
-entity
-// User
-    |---Commands
-    // CreateUserCommand.cs
-    |---Handlers
-    // CreateUserHandler.cs
-    // GetUserHandler.cs
-    |---Queries
-    // GetUserQuery.cs
-    |---Validators
-    // CreateUserValidator.cs
-    // GetUserValidator.cs
-
-interfaces
-// Contains interfaces that the application depends on
-
-mapping
-// Contains 'request <-> domain' AutoMapper profiles or mapping actions
-```
-
-### Domain Folder Layout
-
-```csharp
-entities
-// Contains the domain entity models
-
-constants
-// Contains enumerations and constants
-
-exceptions
-// Contains custom exceptions
-```
-
-### Events Folder Layout
-
-```csharp
-entity
-// User
-    |---Models
-    // Address.cs
-// UserCreated.cs
-// UserUpdated.cs
-// UserDeleted.cs
-```
-
-### Infrastructure Folder Layout
-
-```csharp
-configuration
-// Contains configuration IOptions classes specific to infrastructure
-
-extensions
-// Contains infrastructure-specific extensions classes
-
-services
-// Contains non-persistence implementations for application interfaces
-
-startup
-// Startup orchestrator classes
-```
-
-### Persistence Folder Layout
-
-```csharp
-configuration
-// Contains configuration IOptions classes specific to persistence
-
-entity
-// User - data access implementations
-
-mapping
-// Contains 'persistence <-> domain' AutoMapper profiles and mapping actions
-```
-
-### API Folder Layout
-
-```csharp
-configuration
-// Contains configuration IOptions classes specific to the presentation
-
-controllers
-// Contains API controllers
-
-mapping
-// Contains 'presentation <-> request' AutoMapper profiles and mapping actions
-
-```
-
-> Console and Azure Function have similar folder layouts to API. However, Microsoft recommends that each function in the Function App exist in its own folder. See [Azure Function Best Practices](https://docs.microsoft.com/en-us/azure/azure-functions/functions-best-practices).
+Take a deeper [dive into the solution](./docs/solution_overview.md) to understand the dependencies, assembly responsibilities, and organization setup.
 
 ---
 
