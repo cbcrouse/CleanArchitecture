@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -24,6 +24,7 @@
         <Folder Include="Authorization\" />
         <Folder Include="Models\" />
         <Folder Include="Mapping\" />
+        <Folder Include="HealthChecks\" />
     </ItemGroup>
     <ItemGroup>
         <None Update="healthchecksdb">

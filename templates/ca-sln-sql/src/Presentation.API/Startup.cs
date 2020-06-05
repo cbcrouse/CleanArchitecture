@@ -12,13 +12,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
-using Presentation.API.Configuration;
-using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using Persistence.Sql;
+using Presentation.API.Configuration;
 using Presentation.API.Mapping;
 
 namespace Presentation.API
@@ -43,6 +45,7 @@ namespace Presentation.API
 			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddHealthChecks());
 			ServiceRegistrationExpressions.Add(() => AddMvcCore());
 			ServiceRegistrationExpressions.Add(() => AddSwagger());
+			ServiceRegistrationExpressions.Add(() => AddHealthChecks());
 
 			MapperExtensionExpressions.Add(mapperConfig => mapperConfig.AddProfile(typeof(PresentationProfile)));
 		}
@@ -115,6 +118,23 @@ namespace Presentation.API
 			}
 		}
 
+		/// <summary>
+		/// Adds healthcheck functionality to the <see cref="IServiceCollection"/>.
+		/// </summary>
+		protected virtual void AddHealthChecks()
+		{
+			ServiceCollection.Configure<HealthCheckPublisherOptions>(options =>
+			{
+				options.Delay = TimeSpan.FromSeconds(2);
+				options.Predicate = check => check.Tags.Contains("db_tag");
+			});
+
+			ServiceCollection.AddSingleton<IHealthCheckPublisher, HealthChecks.ReadinessPublisher>();
+			IHealthChecksBuilder builder = ServiceCollection
+				.AddHealthChecks()
+				.AddDbContextCheck<MyDbContext>("My Database Context", tags: new[] { "db_tag" });
+		}
+
 		///<summary>
 		/// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		///</summary>
@@ -154,6 +174,7 @@ namespace Presentation.API
 				var healthOptions = app.ApplicationServices.GetRequiredService<IOptionsMonitor<HealthChecksUIOptions>>().CurrentValue;
 				if (healthOptions.IsEnabled)
 				{
+					// endpoint is /healthchecks-ui
 					endpoints.MapHealthChecksUI();
 				}
 			});
