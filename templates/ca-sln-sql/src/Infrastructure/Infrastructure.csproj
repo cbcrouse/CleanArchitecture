@@ -5,6 +5,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <nullable>enable</nullable>
         <IsPackable>false</IsPackable>
+        <Version>0.0.1</Version>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="8.6.1" />
