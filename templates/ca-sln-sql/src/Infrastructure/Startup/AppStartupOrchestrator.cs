@@ -62,7 +62,6 @@ namespace Infrastructure.Startup
 			{
 				var configurationExpression = new MapperConfigurationExpression();
 				AugmentExpressionExecution(() => configurationExpression.ConstructServicesUsing(serviceProvider.GetService));
-				// TODO: Get rid of the need for MapperExtensionExpressions
 				AugmentExpressionExecutions(MapperExtensionExpressions, configurationExpression);
 				var configuration = new MapperConfiguration(configurationExpression);
 				return configuration.CreateMapper();
