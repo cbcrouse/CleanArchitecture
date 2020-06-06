@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.2.0</PackageVersion>
+    <PackageVersion>1.2.1</PackageVersion>
     <PackageId>CleanArchitecture.Templates</PackageId>
     <Title>Clean Architecture Templates</Title>
     <Authors>Casey Crouse</Authors>

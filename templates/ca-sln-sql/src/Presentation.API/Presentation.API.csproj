@@ -8,13 +8,14 @@
         <Version>0.0.1</Version>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.0.9" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
         <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.1.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.4.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.4.1" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.1" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
