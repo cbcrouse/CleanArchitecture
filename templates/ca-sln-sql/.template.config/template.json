@@ -9,7 +9,7 @@
   "name": "Clean Architecture Solution Template",
   "description": "Creates a flexible solution with EntityFrameworkCore based on Domain Driven Design using the Mediator and Clean Architecture patterns.",
   "identity": "CleanArchitecture.Solution.Template.Sql",
-  "groupIdentity": "CleanArchitecture.Solution.Templates",
+  "groupIdentity": "CleanArchitecture.Solution.Templates.Sql",
   "shortName": "ca-sln-sql",
   "tags": {
     "language": "C#",
