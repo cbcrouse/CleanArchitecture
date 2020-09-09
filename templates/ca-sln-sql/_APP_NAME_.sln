@@ -23,33 +23,35 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{D28B05CC-3771-4CE8-A374-801195A67DA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{5DB33F41-9FAE-427D-9EFF-CB5113DEF90D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{5DB33F41-9FAE-427D-9EFF-CB5113DEF90D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "src\Events\Events.csproj", "{6897B2FA-7FA8-4470-B12A-CE17A58B8A2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events", "src\Events\Events.csproj", "{6897B2FA-7FA8-4470-B12A-CE17A58B8A2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "src\Common\Common.csproj", "{EB18429F-52CD-4642-88B5-80EE58400C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{EB18429F-52CD-4642-88B5-80EE58400C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Sql", "src\Persistence.Sql\Persistence.Sql.csproj", "{572E48BD-74DD-4C84-9B11-2495CE2E0135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Sql", "src\Persistence.Sql\Persistence.Sql.csproj", "{572E48BD-74DD-4C84-9B11-2495CE2E0135}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Console", "src\Presentation.Console\Presentation.Console.csproj", "{07385AA2-63A4-42B7-9D7E-0C67DA06D9BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.Console", "src\Presentation.Console\Presentation.Console.csproj", "{07385AA2-63A4-42B7-9D7E-0C67DA06D9BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.AzureFunction", "src\Presentation.AzureFunction\Presentation.AzureFunction.csproj", "{79A03393-317E-4A45-95C5-9CB1190B47DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.AzureFunction", "src\Presentation.AzureFunction\Presentation.AzureFunction.csproj", "{79A03393-317E-4A45-95C5-9CB1190B47DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.API", "src\Presentation.API\Presentation.API.csproj", "{B800C2E1-0F23-4C11-91DB-969D5C533746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.API", "src\Presentation.API\Presentation.API.csproj", "{B800C2E1-0F23-4C11-91DB-969D5C533746}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "tst\Common.Tests\Common.Tests.csproj", "{18705E4A-204B-46D8-A200-4A8699098DD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Tests", "tst\Common.Tests\Common.Tests.csproj", "{18705E4A-204B-46D8-A200-4A8699098DD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Tests", "tst\Business.Tests\Business.Tests.csproj", "{651EC87F-BA4B-42EE-A28E-FA8E88ED807D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Tests", "tst\Business.Tests\Business.Tests.csproj", "{651EC87F-BA4B-42EE-A28E-FA8E88ED807D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "tst\Infrastructure.Tests\Infrastructure.Tests.csproj", "{275B5BC4-00B3-416C-92D3-647482DBBC2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "tst\Infrastructure.Tests\Infrastructure.Tests.csproj", "{275B5BC4-00B3-416C-92D3-647482DBBC2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Sql.Tests", "tst\Persistence.Tests\Persistence.Sql.Tests.csproj", "{6AC057A5-4911-45B0-8CAD-2470104A43DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Sql.Tests", "tst\Persistence.Tests\Persistence.Sql.Tests.csproj", "{6AC057A5-4911-45B0-8CAD-2470104A43DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.API.Tests", "tst\Presentation.API.Tests\Presentation.API.Tests.csproj", "{381701CD-67F9-4EFC-A691-0B4B993B606D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.API.Tests", "tst\Presentation.API.Tests\Presentation.API.Tests.csproj", "{381701CD-67F9-4EFC-A691-0B4B993B606D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Console.Tests", "tst\Presentation.Console.Tests\Presentation.Console.Tests.csproj", "{E524B658-47EE-44CF-AF56-773C5827028A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.Console.Tests", "tst\Presentation.Console.Tests\Presentation.Console.Tests.csproj", "{E524B658-47EE-44CF-AF56-773C5827028A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapping.Tests", "tst\Mapping.Tests\Mapping.Tests.csproj", "{7F253D77-1A08-4304-9EA4-495B5337B37E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mapping.Tests", "tst\Mapping.Tests\Mapping.Tests.csproj", "{7F253D77-1A08-4304-9EA4-495B5337B37E}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E020074D-3AF7-4906-9C39-42B03EF7234C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +123,10 @@ Global
 		{7F253D77-1A08-4304-9EA4-495B5337B37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F253D77-1A08-4304-9EA4-495B5337B37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F253D77-1A08-4304-9EA4-495B5337B37E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E020074D-3AF7-4906-9C39-42B03EF7234C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E020074D-3AF7-4906-9C39-42B03EF7234C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E020074D-3AF7-4906-9C39-42B03EF7234C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E020074D-3AF7-4906-9C39-42B03EF7234C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
