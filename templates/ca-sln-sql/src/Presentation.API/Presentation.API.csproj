@@ -6,11 +6,16 @@
         <nullable>enable</nullable>
         <IsPackable>false</IsPackable>
         <Version>0.0.1</Version>
+        <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>1cedf2f1-d730-4648-8cfd-b3227c15a446</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
         <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.4.1" />

@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  presentation.api:
+    image: ${DOCKER_REGISTRY-}presentationapi
+    build:
+      context: .
+      dockerfile: src/Presentation.API/Dockerfile
