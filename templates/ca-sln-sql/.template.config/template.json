@@ -62,7 +62,67 @@
   "primaryOutputs": [
     {
       "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "ComponentsWebAssembly-CSharp.sln"
+      "path": "src/Application/Application.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Common/Common.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Domain/Domain.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Events/Events.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Infrastructure/Infrastructure.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Presistence.Sql/Presistence.Sql.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Presentation.API/Presentation.API.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Presentation.AzureFunction/Presentation.AzureFunction.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "src/Presentation.Console/Presentation.Console.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "tst/Business.Tests/Business.Tests.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "tst/Common.Tests/Common.Tests.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "tst/Infrastructure.Tests/Infrastructure.Tests.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "tst/Mapping.Tests/Mapping.Tests.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "tst/Persistence.Tests/Persistence.Tests.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "tst/Presentation.API.Tests/Presentation.API.Tests.csproj"
+    },
+    {
+      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
+      "path": "tst/Presentation.Console.Tests.Tests/Presentation.Console.Tests.csproj"
     }
   ],
   "sources": [
