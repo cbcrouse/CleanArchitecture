@@ -1,6 +1,6 @@
 
 $defaultLocation = Join-Path -Path $PSScriptRoot -ChildPath ".."
-Set-Location $defaultLocation
+Push-Location $defaultLocation
 Get-ChildItem -Path . -Recurse -Filter *.nupkg -ErrorAction SilentlyContinue | ForEach-Object { $_ | Remove-Item -Force -ErrorAction SilentlyContinue }
 
 dotnet pack 'CleanArchitecture.Templates.csproj'
@@ -22,4 +22,4 @@ dotnet restore "$solutionName/$solutionName.sln"
 dotnet build "$solutionName/$solutionName.sln" -c Release --no-restore
 $testProjects = Get-ChildItem -Path . -Recurse -Filter *Tests.csproj -ErrorAction SilentlyContinue
 $testProjects | ForEach-Object { dotnet test "$($_.FullName)" --no-restore --no-build --configuration Release }
-Set-Location ../.. | Out-Null
+Pop-Location
