@@ -13,7 +13,7 @@
   "shortName": "ca-sln",
   "tags": {
     "language": "C#",
-    "type": "solution",
+    "type": "project",
     "runtime": "dotnet core",
     "runtime_version": "3",
     "patterns": ["Mediator", "DDD", "Clean Architecture"]
@@ -24,7 +24,7 @@
     "app-name": {
       "type": "parameter",
       "datatype": "text",
-      "isRequired": true,
+      "isRequired": false,
       "description": "The name of the application.",
       "replaces": "_APP_NAME_",
       "fileRename": "_APP_NAME_"
@@ -39,18 +39,20 @@
     "port": {
       "type": "parameter",
       "datatype": "int",
-      "isRequired": true,
+      "isRequired": false,
       "description": "A non-secure port number. (e.g. 30365)",
       "replaces": "_HTTP_PORT_",
-      "fileRename": "_HTTP_PORT_"
+      "fileRename": "_HTTP_PORT_",
+      "defaultValue": "5000"
     },
     "secure-port": {
       "type": "parameter",
       "datatype": "int",
-      "isRequired": true,
+      "isRequired": false,
       "description": "A secure port number. (e.g. 44395)",
       "replaces": "_HTTPS_PORT_",
-      "fileRename": "_HTTPS_PORT_"
+      "fileRename": "_HTTPS_PORT_",
+      "defaultValue": "45501"
     },
     "git-ignore": {
       "type": "parameter",
