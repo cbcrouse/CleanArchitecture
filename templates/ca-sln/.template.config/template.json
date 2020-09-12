@@ -18,24 +18,9 @@
     "runtime_version": "3",
     "patterns": ["Mediator", "DDD", "Clean Architecture"]
   },
-  "sourceName": "App._APP_NAME_",
+  "sourceName": "_APP_NAME_",
   "preferNameDirectory": true,
   "symbols": {
-    "app-name": {
-      "type": "parameter",
-      "datatype": "text",
-      "isRequired": false,
-      "description": "The name of the application.",
-      "replaces": "_APP_NAME_",
-      "fileRename": "_APP_NAME_"
-    },
-    "app-name-lower": {
-      "type": "generated",
-      "generator": "casing",
-      "parameters": { "source": "app-name", "toLower": true },
-      "replaces": "_APP_NAME_LOWER_",
-      "fileRename": "_APP_NAME_LOWER_"
-    },
     "port": {
       "type": "parameter",
       "datatype": "int",
