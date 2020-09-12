@@ -25,19 +25,46 @@
       "type": "parameter",
       "datatype": "int",
       "isRequired": false,
-      "description": "A non-secure port number. (e.g. 30365)",
-      "replaces": "_HTTP_PORT_",
-      "fileRename": "_HTTP_PORT_",
-      "defaultValue": "5000"
+      "description": "A non-secure port number. (e.g. 30365)"
     },
+    "generated-port": {
+      "type": "generated",
+      "generator": "port"
+    },
+    "port-final": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "port",
+        "fallbackVariableName": "generated-port"
+      },
+      "replaces": "_HTTP_PORT_",
+      "fileRename": "_HTTP_PORT_"
+    },
+
     "secure-port": {
       "type": "parameter",
       "datatype": "int",
       "isRequired": false,
-      "description": "A secure port number. (e.g. 44395)",
+      "description": "A secure port number. (e.g. 44395)"
+    },
+    "generated-secure-port": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 44300,
+        "high": 44399
+      }
+    },
+    "secure-port-final": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "secure-port",
+        "fallbackVariableName": "generated-secure-port"
+      },
       "replaces": "_HTTPS_PORT_",
-      "fileRename": "_HTTPS_PORT_",
-      "defaultValue": "45501"
+      "fileRename": "_HTTPS_PORT_"
     },
     "git-ignore": {
       "type": "parameter",
