@@ -1,7 +1,12 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Casey Crouse",
-  "classifications": ["Web", "Console", "AzureFunction"],
+  "classifications": [
+    "Web",
+    "Console",
+    "AzureFunction",
+    "EntityFramework"
+  ],
   "name": "Clean Architecture Solution Template",
   "description": "Creates a flexible solution with EntityFrameworkCore based on Domain Driven Design using the Mediator and Clean Architecture patterns.",
   "identity": "CleanArchitecture.Solution.Template.Sql",
@@ -14,38 +19,50 @@
     "runtime_version": "3",
     "patterns": ["Mediator", "DDD", "Clean Architecture"]
   },
-  "defaultName": "WebApplication1",
-  "sourceName": "App._APP_NAME_",
+  "sourceName": "_APP_NAME_",
   "preferNameDirectory": true,
   "symbols": {
-    "app-name": {
-      "type": "parameter",
-      "datatype": "text",
-      "isRequired": true,
-      "description": "The name of the application.",
-      "replaces": "_APP_NAME_",
-      "fileRename": "_APP_NAME_"
-    },
-    "app-name-lower": {
-      "type": "generated",
-      "generator": "casing",
-      "parameters": { "source": "app-name", "toLower": true },
-      "replaces": "_APP_NAME_LOWER_",
-      "fileRename": "_APP_NAME_LOWER_"
-    },
     "port": {
       "type": "parameter",
       "datatype": "int",
-      "isRequired": true,
-      "description": "A non-secure port number. (e.g. 30365)",
+      "isRequired": false,
+      "description": "A non-secure port number. (e.g. 30365)"
+    },
+    "generated-port": {
+      "type": "generated",
+      "generator": "port"
+    },
+    "port-final": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "port",
+        "fallbackVariableName": "generated-port"
+      },
       "replaces": "_HTTP_PORT_",
       "fileRename": "_HTTP_PORT_"
     },
     "secure-port": {
       "type": "parameter",
       "datatype": "int",
-      "isRequired": true,
-      "description": "A secure port number. (e.g. 44395)",
+      "isRequired": false,
+      "description": "A secure port number. (e.g. 44395)"
+    },
+    "generated-secure-port": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 44300,
+        "high": 44399
+      }
+    },
+    "secure-port-final": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "secure-port",
+        "fallbackVariableName": "generated-secure-port"
+      },
       "replaces": "_HTTPS_PORT_",
       "fileRename": "_HTTPS_PORT_"
     },
@@ -58,85 +75,5 @@
       "replaces": "_GIT_IGNORE_",
       "fileRename": "_GIT_IGNORE_"
     }
-  },
-  "primaryOutputs": [
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Application/Application.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Common/Common.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Domain/Domain.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Events/Events.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Infrastructure/Infrastructure.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Presistence.Sql/Presistence.Sql.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Presentation.API/Presentation.API.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Presentation.AzureFunction/Presentation.AzureFunction.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "src/Presentation.Console/Presentation.Console.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "tst/Business.Tests/Business.Tests.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "tst/Common.Tests/Common.Tests.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "tst/Infrastructure.Tests/Infrastructure.Tests.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "tst/Mapping.Tests/Mapping.Tests.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "tst/Persistence.Tests/Persistence.Tests.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "tst/Presentation.API.Tests/Presentation.API.Tests.csproj"
-    },
-    {
-      "condition": "(Hosted && (HostIdentifier == \"dotnetcli\" || HostIdentifier == \"dotnetcli-preview\"))",
-      "path": "tst/Presentation.Console.Tests.Tests/Presentation.Console.Tests.csproj"
-    }
-  ],
-  "sources": [
-    {
-      "source": "./",
-      "target": "./",
-      "modifiers": [
-        {
-          "condition": "(Hosted && HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
-          "exclude": [
-          "*.sln"
-          ]
-        }
-      ]
-    }
-  ]
+  }
 }
