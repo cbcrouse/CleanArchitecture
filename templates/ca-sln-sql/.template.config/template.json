@@ -4,7 +4,8 @@
   "classifications": [
     "Web",
     "Console",
-    "AzureFunction"
+    "AzureFunction",
+    "EntityFramework"
   ],
   "name": "Clean Architecture Solution Template",
   "description": "Creates a flexible solution with EntityFrameworkCore based on Domain Driven Design using the Mediator and Clean Architecture patterns.",
@@ -13,42 +14,55 @@
   "shortName": "ca-sln-sql",
   "tags": {
     "language": "C#",
-    "type": "solution",
+    "type": "project",
     "runtime": "dotnet core",
     "runtime_version": "3",
     "patterns": ["Mediator", "DDD", "Clean Architecture"]
   },
-  "sourceName": "App._APP_NAME_",
+  "sourceName": "_APP_NAME_",
   "preferNameDirectory": true,
   "symbols": {
-    "app-name": {
-      "type": "parameter",
-      "datatype": "text",
-      "isRequired": true,
-      "description": "The name of the application.",
-      "replaces": "_APP_NAME_",
-      "fileRename": "_APP_NAME_"
-    },
-    "app-name-lower": {
-      "type": "generated",
-      "generator": "casing",
-      "parameters": { "source": "app-name", "toLower": true },
-      "replaces": "_APP_NAME_LOWER_",
-      "fileRename": "_APP_NAME_LOWER_"
-    },
     "port": {
       "type": "parameter",
       "datatype": "int",
-      "isRequired": true,
-      "description": "A non-secure port number. (e.g. 30365)",
+      "isRequired": false,
+      "description": "A non-secure port number. (e.g. 30365)"
+    },
+    "generated-port": {
+      "type": "generated",
+      "generator": "port"
+    },
+    "port-final": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "port",
+        "fallbackVariableName": "generated-port"
+      },
       "replaces": "_HTTP_PORT_",
       "fileRename": "_HTTP_PORT_"
     },
     "secure-port": {
       "type": "parameter",
       "datatype": "int",
-      "isRequired": true,
-      "description": "A secure port number. (e.g. 44395)",
+      "isRequired": false,
+      "description": "A secure port number. (e.g. 44395)"
+    },
+    "generated-secure-port": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 44300,
+        "high": 44399
+      }
+    },
+    "secure-port-final": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "secure-port",
+        "fallbackVariableName": "generated-secure-port"
+      },
       "replaces": "_HTTPS_PORT_",
       "fileRename": "_HTTPS_PORT_"
     },
