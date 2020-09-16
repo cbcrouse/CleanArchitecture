@@ -80,7 +80,7 @@ dotnet new -i CleanArchitecture.Templates
 ### Create a template
 
 ```powershell
-dotnet new ca-sln --app-name MyNewApp --secure-port 44399 --port 34399
+dotnet new ca-sln-sql --name MyNewApp --secure-port 44399 --port 34399
 ```
 
 ---
