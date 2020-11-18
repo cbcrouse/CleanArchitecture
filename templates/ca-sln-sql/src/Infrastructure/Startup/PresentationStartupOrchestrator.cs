@@ -9,11 +9,11 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Startup
 {
-	/// <summary>
-	/// Defines the default behavior for orchestrating dependency registrations across the presentation and infrastructure.
-	/// </summary>
-	/// <typeparam name="TOrchestrator">The <see cref="CoreStartupOrchestrator"/> implementation.</typeparam>
-	public class PresentationStartupOrchestrator<TOrchestrator> where TOrchestrator : CoreStartupOrchestrator, new()
+    /// <summary>
+    /// Defines the default behavior for orchestrating dependency registrations across the presentation and infrastructure.
+    /// </summary>
+    /// <typeparam name="TOrchestrator">The <see cref="CoreStartupOrchestrator"/> implementation.</typeparam>
+    public class PresentationStartupOrchestrator<TOrchestrator> where TOrchestrator : CoreStartupOrchestrator, new()
 	{
 		/// <summary>
 		/// Populates the <see cref="IServiceCollection"/> with presentation-specific dependencies
@@ -67,7 +67,9 @@ namespace Infrastructure.Startup
 		protected virtual void SetBasePath(IConfigurationBuilder builder)
 		{
 			string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
 			string path = Directory.GetParent(assemblyLocation).FullName;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 			builder.SetBasePath(path);
 		}
 
