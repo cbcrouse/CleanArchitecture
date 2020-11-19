@@ -12,6 +12,9 @@
         <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>
     <ItemGroup>
+      <Content Remove="stryker-config.json" />
+    </ItemGroup>
+    <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
@@ -31,6 +34,9 @@
         <Folder Include="Models\" />
         <Folder Include="Mapping\" />
         <Folder Include="HealthChecks\" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="stryker-config.json" />
     </ItemGroup>
     <ItemGroup>
         <None Update="healthchecksdb">
