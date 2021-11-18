@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="templates/**/*" Exclude="templates/**/bin/**;templates/**/obj/**" />
+    <Content Include="templates/**/*" Exclude="templates/**/bin/**;templates/**/obj/**;templates/**/_ReSharper.Caches/**;templates/**/StrykerOutput/**;templates/**/.vs/**" />
     <Compile Remove="**/*" />
   </ItemGroup>
 

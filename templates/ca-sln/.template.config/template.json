@@ -62,15 +62,6 @@
         "fallbackVariableName": "generated-secure-port"
       },
       "replaces": "44301"
-    },
-    "git-ignore": {
-      "type": "parameter",
-      "datatype": "text",
-      "isRequired": false,
-      "defaultValue": "",
-      "description": "Do not provide this parameter. It ensures the .gitignore file is included with the correct name. For some unknown reason, files that do not have a prefix name such as .gitignore are not included in the content folder when the package is created. So the file has been named _GIT_IGNORE_.gitignore to ensure the file is included, but the prefix is replaced with an empty string.",
-      "replaces": "_GIT_IGNORE_",
-      "fileRename": "_GIT_IGNORE_"
     }
   }
 }
