@@ -3,7 +3,7 @@ $defaultLocation = Join-Path -Path $PSScriptRoot -ChildPath ".."
 Push-Location $defaultLocation
 Get-ChildItem -Path . -Recurse -Filter *.nupkg -ErrorAction SilentlyContinue | ForEach-Object { $_ | Remove-Item -Force -ErrorAction SilentlyContinue }
 
-dotnet pack 'CleanArchitecture.Templates.csproj'
+dotnet pack 'CleanArchitecture.Templates.csproj' -p:NoDefaultExcludes=true
 
 Set-Location $PSScriptRoot | Out-Null
 $nupkg = Get-ChildItem -Path "../bin/Debug" -Filter CleanArchitecture.Templates.*.nupkg -ErrorAction Stop | Select-Object -First 1
@@ -25,7 +25,7 @@ Set-Location $path | Out-Null
 $solutionName = 'MyApplication'
 
 # Template Names: ca-sln, ca-sln-sql
-dotnet new ca-sln-sql --name $solutionName
+dotnet new ca-sln-sql --name $solutionName --port 34344 --secure-port 44344
 dotnet restore "$solutionName/$solutionName.sln"
 dotnet build "$solutionName/$solutionName.sln" -c Release --no-restore
 $testProjects = Get-ChildItem -Path . -Recurse -Filter *Tests.csproj -ErrorAction SilentlyContinue
