@@ -38,10 +38,8 @@
         "sourceVariableName": "port",
         "fallbackVariableName": "generated-port"
       },
-      "replaces": "_HTTP_PORT_",
-      "fileRename": "_HTTP_PORT_"
+      "replaces": "34301"
     },
-
     "secure-port": {
       "type": "parameter",
       "datatype": "int",
@@ -63,8 +61,7 @@
         "sourceVariableName": "secure-port",
         "fallbackVariableName": "generated-secure-port"
       },
-      "replaces": "_HTTPS_PORT_",
-      "fileRename": "_HTTPS_PORT_"
+      "replaces": "44301"
     },
     "git-ignore": {
       "type": "parameter",

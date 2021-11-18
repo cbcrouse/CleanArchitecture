@@ -8,7 +8,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:_HTTPS_PORT_;http://localhost:_HTTP_PORT_"
+      "applicationUrl": "https://localhost:44301;http://localhost:34301"
     },
     "Docker": {
       "commandName": "Docker",
