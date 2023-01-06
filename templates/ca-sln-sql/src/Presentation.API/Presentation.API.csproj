@@ -19,7 +19,7 @@
         <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.4.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.4.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="6.4.0" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.1" />
     </ItemGroup>
     <ItemGroup>
