@@ -13,7 +13,7 @@
         <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="6.4.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
