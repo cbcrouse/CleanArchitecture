@@ -1,4 +1,5 @@
-﻿using Application.TodoItem.Validators;
+﻿using Application.TodoItem.Commands;
+using Application.TodoItem.Validators;
 using FluentValidation.Validators;
 using FluentValidation.Validators.UnitTestExtension.Composer;
 using FluentValidation.Validators.UnitTestExtension.Core;
@@ -17,7 +18,7 @@ namespace Business.Tests.TodoItem
 			// Act & Assert
 			sut.ShouldHaveRules(x => x.Description,
 				BaseVerifiersSetComposer.Build()
-					.AddPropertyValidatorVerifier<NotEmptyValidator>()
+					.AddPropertyValidatorVerifier<NotEmptyValidator<CreateTodoItemCommand, string>>()
 					.Create());
 
 			// Assert

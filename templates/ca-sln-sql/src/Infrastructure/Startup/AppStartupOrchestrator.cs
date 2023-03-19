@@ -1,4 +1,5 @@
-﻿using Application.Configuration;
+﻿using System;
+using Application.Configuration;
 using Application.Interfaces;
 using Application.Interfaces.ValueResolvers;
 using Application.Mapping;
@@ -44,8 +45,8 @@ namespace Infrastructure.Startup
 			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>)));
 			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>)));
 			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestMetricsBehavior<,>)));
-			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddMediatR(typeof(ApplicationOptions).Assembly));
-			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddValidatorsFromAssemblyContaining(typeof(ApplicationOptions), ServiceLifetime.Transient));
+			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddMediatR(GetMediatRConfiguration()));
+			ServiceRegistrationExpressions.Add(() => ServiceCollection.AddValidatorsFromAssemblyContaining(typeof(ApplicationOptions), ServiceLifetime.Transient, null, false));
 
 			// AutoMapper
 			ServiceRegistrationExpressions.Add(() => RegisterAutoMapper());
@@ -56,7 +57,15 @@ namespace Infrastructure.Startup
 			ServiceRegistrationExpressions.Add(() => AddSqlDataAccess());
 		}
 
-		private void RegisterAutoMapper()
+        private static Action<MediatRServiceConfiguration> GetMediatRConfiguration()
+        {
+            return configuration =>
+            {
+                configuration.RegisterServicesFromAssembly(typeof(ApplicationOptions).Assembly);
+            };
+        }
+
+        private void RegisterAutoMapper()
 		{
 			ServiceCollection.AddSingleton(serviceProvider =>
 			{
