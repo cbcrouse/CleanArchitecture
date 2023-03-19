@@ -14,9 +14,11 @@ IHostBuilder CreateHostBuilder() =>
             var startup = new Startup();
             startup.ConfigureServices(services);
         })
-        .ConfigureFunctionsWorkerDefaults(workerApp =>
-        {
-            // FINALLY, we can use middleware in Azure Functions
-            // https://github.com/Azure/azure-functions-dotnet-worker/tree/main/samples/CustomMiddleware
-            //workerApp.UseMiddleware()
-        });
+        .ConfigureFunctionsWorkerDefaults(
+            //workerApp =>
+            //{
+            //    // Azure Functions now support Middleware!
+            //    // https://github.com/Azure/azure-functions-dotnet-worker/tree/main/samples/CustomMiddleware
+            //    //workerApp.UseMiddleware()
+            //}
+        );
