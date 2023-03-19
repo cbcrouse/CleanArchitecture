@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Reflection;
 using HealthChecks.UI.Client;
 using Infrastructure.Startup;
 using Microsoft.AspNetCore.Builder;
@@ -16,16 +10,22 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
-using Presentation.API.Configuration;
-using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using Presentation.API.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Reflection;
 
 namespace Presentation.API
 {
-	/// <summary>
-	/// Default startup for the _APP_NAME_ API.
-	/// </summary>
-	public class Startup : PresentationStartupOrchestrator<AppStartupOrchestrator>
+    /// <summary>
+    /// Default startup for the _APP_NAME_ API.
+    /// </summary>
+    public class Startup : PresentationStartupOrchestrator<AppStartupOrchestrator>
 	{
 		/// <summary>
 		/// Default Constructor

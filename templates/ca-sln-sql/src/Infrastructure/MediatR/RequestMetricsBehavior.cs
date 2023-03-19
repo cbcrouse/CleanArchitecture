@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.MediatR
 {
-	/// <summary>
-	/// An instance of <see cref="RequestMetricsBehavior{TRequest, TResponse}"/>.
-	/// </summary>
-	public class RequestMetricsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	{
+    /// <summary>
+    /// An instance of <see cref="RequestMetricsBehavior{TRequest, TResponse}"/>.
+    /// </summary>
+    public class RequestMetricsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+    {
 		private readonly Stopwatch _timer;
 		private readonly ILogger<TRequest> _logger;
 
@@ -31,7 +31,7 @@ namespace Infrastructure.MediatR
 		/// <param name="request">The <see cref="IRequest"/> object.</param>
 		/// <param name="cancellationToken">Propagates notification that operations should be canceled.</param>
 		/// <param name="next">The next handler in the pipeline.</param>
-		public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+		public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
 		{
 			_timer.Start();
 
@@ -52,5 +52,5 @@ namespace Infrastructure.MediatR
 
 			return response;
 		}
-	}
+    }
 }

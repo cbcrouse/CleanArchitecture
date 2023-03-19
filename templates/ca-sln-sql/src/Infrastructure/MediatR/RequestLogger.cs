@@ -10,8 +10,8 @@ namespace Infrastructure.MediatR
 	/// <summary>
 	/// A <see cref="RequestLogger{TRequest}"/>
 	/// </summary>
-	public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
-	{
+	public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
+    {
 		private readonly ILogger _logger;
 
 		/// <summary>

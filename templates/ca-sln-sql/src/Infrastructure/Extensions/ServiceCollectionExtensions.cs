@@ -5,7 +5,6 @@ using FluentValidation.Results;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
-using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 // This namespace has been intentionally changed for convenience.
 // ReSharper disable once CheckNamespace
@@ -40,7 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             if (options is IValidatable validatableOptions)
             {
-                var results = new List<ValidationResult>();
+                var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
                 Validator.TryValidateObjectRecursive(validatableOptions, results);
                 if (results.Any())
                 {
@@ -48,10 +47,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         .Select(result => new ValidationFailure(result.MemberNames.First(), result.ErrorMessage))
                         .ToList();
 
-                    if (failures.Count != 0)
-                    {
-                        throw new ValidationException(failures);
-                    }
+                    throw new ValidationException(failures);
                 }
             }
 
