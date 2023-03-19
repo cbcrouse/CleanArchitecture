@@ -67,8 +67,10 @@ namespace Infrastructure.Startup
 		protected virtual void SetBasePath(IConfigurationBuilder builder)
 		{
 			string assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
-			string path = Directory.GetParent(assemblyLocation).FullName;
-			builder.SetBasePath(path);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            string path = Directory.GetParent(assemblyLocation).FullName;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            builder.SetBasePath(path);
 		}
 
 		/// <summary>

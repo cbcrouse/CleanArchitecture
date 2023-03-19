@@ -159,7 +159,7 @@ namespace Presentation.API
 		private void UseDeveloperExceptionPage(IApplicationBuilder app)
 		{
 			var env = app.ApplicationServices.GetService<IHostEnvironment>();
-			if (env.IsDevelopment())
+			if (env != null && env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 				IdentityModelEventSource.ShowPII = true;
