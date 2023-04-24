@@ -60,7 +60,7 @@ jobs:
 
       - name: Test ca-sln-sql
         run: >-
-          dotnet test './templates/ca-sln-sql/_APP_NAME_.sln'
+          dotnet test './templates/ca-sln-sql/tst/**/*.csproj'
           --no-restore
           --verbosity minimal
           --logger trx
