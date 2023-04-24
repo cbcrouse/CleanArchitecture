@@ -1,9 +1,11 @@
-name: .NET Build, Test & Scan
+name: .NET Build, Test & Scan (ca-sln-sql)
 
 on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'templates/ca-sln-sql/**'
 
 jobs:
   build:
@@ -50,14 +52,20 @@ jobs:
         with:
           dotnet-version: 7.x
 
-      - name: Restore ca-sln
-        run: dotnet restore './templates/ca-sln/_APP_NAME_.sln'
+      - name: Restore ca-sln-sql
+        run: dotnet restore './templates/ca-sln-sql/_APP_NAME_.sln'
 
-      - name: Build ca-sln
-        run: dotnet build './templates/ca-sln/_APP_NAME_.sln' --configuration Release --no-restore
+      - name: Build ca-sln-sql
+        run: dotnet build './templates/ca-sln-sql/_APP_NAME_.sln' --configuration Release --no-restore
 
-      - name: Test ca-sln
-        run: dotnet test './templates/ca-sln/_APP_NAME_.sln' --no-restore --verbosity minimal
+      - name: Test ca-sln-sql
+        run: >-
+          dotnet test './templates/ca-sln-sql/_APP_NAME_.sln'
+          --no-restore
+          --verbosity minimal
+          --logger trx
+          --collect:"XPlat Code Coverage"
+          -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 
       - name: Build and analyze
         env:
