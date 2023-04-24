@@ -20,6 +20,7 @@
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
         <PackageReference Include="MongoDB.Bson" Version="2.19.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="StartupOrchestration.NET" Version="1.0.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Application\Application.csproj" />

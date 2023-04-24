@@ -1,4 +1,5 @@
 ﻿using Application.Configuration;
+using AutoMapper;
 using Common.DataAnnotations;
 using FluentValidation;
 using FluentValidation.Results;
@@ -32,7 +33,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             string sectionKey = typeof(T).Name;
             IConfigurationSection section = configuration.GetSection(sectionKey.Replace("Options", ""));
-            section ??= configuration.GetSection(sectionKey);
 
             var options = new T();
             section.Bind(options);
@@ -55,6 +55,31 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             servicesCollection.Configure<T>(section);
+        }
+
+        /// <summary>
+        /// Extension method for registering AutoMapper in the <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <remarks>
+        /// Registers an <see cref="IMapper"/> instance to provide type mapping between objects.
+        /// </remarks>
+        /// <param name="serviceCollection">The <see cref="IServiceCollection"/> instance to register AutoMapper with.</param>
+        /// <seealso cref="MapperConfigurationExpression"/>
+        /// <seealso cref="IMapper"/>
+        public static void RegisterAutoMapper(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddSingleton(serviceProvider =>
+            {
+                var configurationExpression = new MapperConfigurationExpression();
+                var profiles = serviceProvider.GetServices<Profile>();
+                foreach (Profile profile in profiles)
+                {
+                    configurationExpression.AddProfile(profile);
+                }
+                configurationExpression.ConstructServicesUsing(serviceProvider.GetService);
+                var configuration = new MapperConfiguration(configurationExpression);
+                return configuration.CreateMapper();
+            });
         }
     }
 }
