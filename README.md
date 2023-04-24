@@ -2,7 +2,7 @@
 
 # Clean Architecture Templates
 
-![.NET Core](https://github.com/cbcrouse/CleanArchitecture/workflows/.NET%20Core/badge.svg) [![Build status](https://caseycrouse.visualstudio.com/Github/_apis/build/status/CleanArchitecture-CD)](https://caseycrouse.visualstudio.com/Github/_build/latest?definitionId=6) [![NuGet](https://img.shields.io/nuget/v/CleanArchitecture.Templates.svg)](https://www.nuget.org/packages/CleanArchitecture.Templates/) [![NuGet](https://img.shields.io/nuget/dt/CleanArchitecture.Templates.svg)](https://www.nuget.org/stats/packages/CleanArchitecture.Templates?groupby=Version)
+![.NET Core](https://github.com/cbcrouse/CleanArchitecture/workflows/.NET%20Core/badge.svg) [![Build status](https://caseycrouse.visualstudio.com/Github/_apis/build/status/CleanArchitecture-CD)](https://caseycrouse.visualstudio.com/Github/_build/latest?definitionId=6) [![NuGet](https://img.shields.io/nuget/v/CleanArchitecture.Templates.svg)](https://www.nuget.org/packages/CleanArchitecture.Templates/) [![NuGet](https://img.shields.io/nuget/dt/CleanArchitecture.Templates.svg)](https://www.nuget.org/stats/packages/CleanArchitecture.Templates?groupby=Version) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cbcrouse_CleanArchitecture&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cbcrouse_CleanArchitecture)
 
 _Keep your application code free of dependencies like persistence and presentation._
 
