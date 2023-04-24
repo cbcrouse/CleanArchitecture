@@ -1,8 +1,18 @@
 ﻿using Application.Configuration;
+using Application.Interfaces;
+using Application.Interfaces.ValueResolvers;
+using Application.Mapping;
+using AutoMapper;
 using Common.DataAnnotations;
 using FluentValidation;
 using FluentValidation.Results;
+using Infrastructure.ValueResolvers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Persistence.Sql;
+using Persistence.Sql.Configuration;
+using Persistence.Sql.TodoItem;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +21,7 @@ using System.Linq;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Provides extensions for <see cref="IConfiguration"/>.
+    /// Provides extensions for <see cref="IServiceCollection"/>.
     /// </summary>
     public static class ServiceCollectionExtensions
     {
@@ -32,7 +42,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             string sectionKey = typeof(T).Name;
             IConfigurationSection section = configuration.GetSection(sectionKey.Replace("Options", ""));
-            section ??= configuration.GetSection(sectionKey);
 
             var options = new T();
             section.Bind(options);
@@ -52,6 +61,53 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             servicesCollection.Configure<T>(section);
+        }
+
+        /// <summary>
+        /// Extension method for registering AutoMapper in the <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <remarks>
+        /// Registers an <see cref="IMapper"/> instance to provide type mapping between objects.
+        /// </remarks>
+        /// <param name="serviceCollection">The <see cref="IServiceCollection"/> instance to register AutoMapper with.</param>
+        /// <seealso cref="MapperConfigurationExpression"/>
+        /// <seealso cref="ApplicationProfile"/>
+        /// <seealso cref="NowValueResolver{TSource,TDestination}"/>
+        /// <seealso cref="StringKeyValueResolver{TSource,TDestination}"/>
+        /// <seealso cref="IMapper"/>
+        public static void RegisterAutoMapper(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddSingleton<Profile, ApplicationProfile>();
+            serviceCollection.AddSingleton(serviceProvider =>
+            {
+                var configurationExpression = new MapperConfigurationExpression();
+                var profiles = serviceProvider.GetServices<Profile>();
+                foreach (Profile profile in profiles)
+                {
+                    configurationExpression.AddProfile(profile);
+                }
+                configurationExpression.ConstructServicesUsing(serviceProvider.GetService);
+                var configuration = new MapperConfiguration(configurationExpression);
+                return configuration.CreateMapper();
+            });
+
+            // AutoMapper Resolvers
+            serviceCollection.AddSingleton(typeof(INowValueResolver<,>), typeof(NowValueResolver<,>));
+            serviceCollection.AddSingleton(typeof(IStringKeyValueResolver<,>), typeof(StringKeyValueResolver<,>));
+        }
+
+        /// <summary>
+        /// Registers services related to SQL data access in the specified <see cref="IServiceCollection"/> instance.
+        /// </summary>
+        /// <param name="serviceCollection">The <see cref="IServiceCollection"/> instance to add the services to.</param>
+        public static void AddSqlDataAccess(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddDbContextPool<MyDbContext>((serviceProvider, builder) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptionsMonitor<PersistenceOptions>>().CurrentValue;
+                builder.UseSqlServer(options.SqlDataStore.ConnectionString);
+            });
+            serviceCollection.AddScoped<ITodoItemCommandDataAccess, TodoItemCommandDataAccess>();
         }
     }
 }
