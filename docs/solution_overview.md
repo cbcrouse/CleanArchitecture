@@ -2,7 +2,7 @@
 
 Below is a diagram and several descriptions to help you understand the layout of the solution and why assemblies have certain dependencies and why other dependent relationships must not exist.
 
-## Dependency Diagram
+## 💠 Dependency Diagram
 
 <p align="center">
     <img width="450" height="450" src="./media/dependency_diagram.png" />
@@ -16,11 +16,11 @@ Below is a diagram and several descriptions to help you understand the layout of
 
 ---
 
-## Assembly Responsibilities
+## 🧩 Assembly Responsibilities
 
-* **API** - Provides presentation-specific dependency registrations through `PresentationStartupOrchestrator<TOrchestrator>`.
-* **Azure Function** - Provides presentation-specific dependency registrations through `FunctionStartupOrchestrator<TOrchestrator>`. Azure Functions have a different startup because it requires inheriting `FunctionStartup`.
-* **Console** - Provides presentation-specific dependency registrations through `PresentationStartupOrchestrator<TOrchestrator>`.
+* **API** - Provides presentation-specific dependency registrations through `StartupOrchestrator<TOrchestrator>`.
+* **Azure Function** - Provides presentation-specific dependency registrations through `StartupOrchestrator<TOrchestrator>`.
+* **Console** - Provides presentation-specific dependency registrations through `StartupOrchestrator<TOrchestrator>`.
 * **Infrastructure** - Handles dependency registrations for the application and persistence as well as 3rd party integration implementations such as HTTP Clients.
 * **Persistence** - Provides implementation details for persistence related interfaces in the application.
 * **Application** - Provides the dependency-free core business logic.
@@ -30,7 +30,7 @@ Below is a diagram and several descriptions to help you understand the layout of
 
 ---
 
-## Folder Layouts
+## 📁 Folder Layouts
 
 Below are examples of how files are organized within the projects. You can come up with your own ways to organize it, but this is a good place to start.
 
@@ -128,5 +128,6 @@ mapping
 
 ```
 
-> Console and Azure Function have similar folder layouts to API. However, Microsoft recommends that each function in the Function App exist in its own folder. See [Azure Function Best Practices](https://docs.microsoft.com/en-us/azure/azure-functions/functions-best-practices).
+> Console and Azure Function have similar folder layouts to API. However, Microsoft recommends that each function in the Function App exist in its own folder. See [Azure Function Best Practices](https://docs.microsoft.com/azure/azure-functions/functions-best-practices).
+
 ---
