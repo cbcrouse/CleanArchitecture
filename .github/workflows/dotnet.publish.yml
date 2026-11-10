@@ -1,0 +1,52 @@
+name: Publish NuGet template
+
+on:
+  workflow_dispatch:
+    inputs:
+      existing_tag:
+        description: Release tag to pack and publish
+        required: true
+        type: string
+
+jobs:
+  publish-nuget:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check out the existing release tag
+        if: inputs.existing_tag != ''
+        env:
+          RELEASE_TAG: ${{ inputs.existing_tag }}
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Expected a version tag such as v3.0.0"
+            exit 1
+          fi
+          git merge-base --is-ancestor "refs/tags/$RELEASE_TAG" HEAD
+          git checkout --detach "refs/tags/$RELEASE_TAG"
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '11.x'
+
+      - name: Pack template
+        run: dotnet pack CleanArchitecture.Templates.csproj --configuration Release --output artifacts
+
+      - name: Authenticate with NuGet.org
+        uses: NuGet/login@v1
+        id: nuget_login
+        with:
+          user: cbcrouse
+
+      - name: Publish template
+        env:
+          NUGET_API_KEY: ${{ steps.nuget_login.outputs.NUGET_API_KEY }}
+        run: dotnet nuget push "artifacts/*.nupkg" --skip-duplicate --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
